@@ -6,20 +6,15 @@ public class EnemyBehaviour : MonoBehaviour
 {
 
     public HealthBehaviour playerHealh;
-    public float timeToAttack = 5;
-    public float attackDistance = 5;
-    public float damage = 30;
     public float aligningThreshold = 0.99f;
+    public float distanceToAction = 5;
+    public float timeBetweenAttacks = 2;
 
-    public float thresholdToPlayer = 1;
-
-    private float currentTimeToAttack = 0;
     private HealthBehaviour health;
     private InlineAttackBehaviour attackBehaviour;
     private EnemyMovementBehaviour enemyMovementBehaviour;
-    public EnemyState state;
-
-    private Vector3 attackPosition;
+    private float currentTimeBetweenAttacks = 3;
+    private EnemyState state;
 
     private void Start()
     {
@@ -37,28 +32,90 @@ public class EnemyBehaviour : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        switch(state)
-        {
-            case EnemyState.MOVING:
-
-                enemyMovementBehaviour.Move();
-
-                if(isAlignedWithPlayer())
-                {
-                    state = EnemyState.ATTACKING;
-                }
-
-                break;
-            case EnemyState.ATTACKING:
-
-                attackBehaviour.AttackPlayer();
-
-                break;
-        }
-
+        currentTimeBetweenAttacks += Time.deltaTime;
     }
 
-    public bool isAlignedWithPlayer()
+    void FixedUpdate()
+    {
+        switch (state)
+        {
+            case EnemyState.MOVING:
+            Debug.Log("MOVING");
+            enemyMovementBehaviour.FollowPlayer();
+
+            if (Vector2.Distance(transform.position, playerHealh.transform.position) < distanceToAction)
+            {
+
+                int random = Random.Range(0, 3);
+                if (random == 0)
+                {
+                    StartDodging();
+                    Invoke("StartMoving", 1.0f);
+                }
+                else if (random == 1)
+                {
+                    StartDeshing();
+                    Invoke("StartMoving", 1.0f);
+
+                }
+                else if (currentTimeBetweenAttacks > timeBetweenAttacks)
+                {
+                    StartAttacking();
+                    currentTimeBetweenAttacks = 0;
+                }
+            }
+
+            break;
+        case EnemyState.ATTACKING:
+            Debug.Log("ATTACKING");
+            attackBehaviour.AttackPlayer();
+
+            break;
+        case EnemyState.DODGING:
+            Debug.Log("DODGING");
+            enemyMovementBehaviour.Dodge();
+
+            break;
+        case EnemyState.DESHING:
+            Debug.Log("DESHING");
+
+            enemyMovementBehaviour.Desh();
+
+            break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            StartDodging();
+            Invoke("StartMoving", 2.0f);
+        }
+    }
+
+    public void StartMoving()
+    {
+        state = EnemyState.MOVING;
+    }
+
+    private void StartDodging()
+    {
+        state = EnemyState.DODGING;
+    }
+
+    private void StartDeshing()
+    {
+        enemyMovementBehaviour.ResetDesh();
+        state = EnemyState.DESHING;
+    }
+
+    private void StartAttacking()
+    {
+        state = EnemyState.ATTACKING;
+    }
+
+    public bool IsAlignedWithPlayer()
     {
         return
             Vector2.Dot(((Vector2) playerHealh.transform.position - (Vector2)transform.position).normalized, Vector2.right) > aligningThreshold ||
@@ -67,6 +124,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     public enum EnemyState
     {
-        MOVING, ATTACKING
+        MOVING, ATTACKING, DODGING, DESHING
     }
 }

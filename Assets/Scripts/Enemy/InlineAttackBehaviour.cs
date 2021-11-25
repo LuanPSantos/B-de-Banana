@@ -5,61 +5,53 @@ using UnityEngine;
 public class InlineAttackBehaviour : MonoBehaviour
 {
     public float attackSpeed = 15;
-    public float timeToAttack = 2;
-    public float attackThreshold = 0.99f;
     public float stopAttackThreshold = 1;
+    public float distanceToAttack = 1;
     public PlayerBehaviour playerBehaviour;
 
     private EnemyBehaviour enemyBehaviour;
-    private float currentTimeToAttack = 0;
-    private bool isAttackLoaded = false;
-    private Vector2? currentTarget;
+    private BoxCollider2D collider2d;
+    private bool isAimed = false;
+    private Vector3 target;
 
     void Start()
     {
         enemyBehaviour = GetComponent<EnemyBehaviour>();
-        currentTarget = null;
+        collider2d = GetComponent<BoxCollider2D>();
     }
 
     public void AttackPlayer()
     {
-        LoadAttack();
-        Attack();
-    }
-
-    private void LoadAttack()
-    {
-        isAttackLoaded = currentTimeToAttack > timeToAttack;
-
-        currentTimeToAttack += Time.deltaTime;
-    }
-
-    private void Attack()
-    {
-        if (isAttackLoaded)
+        if (isAimed)
         {
+            transform.position = Vector2.Lerp(transform.position, target, attackSpeed * Time.deltaTime);
 
-            if (enemyBehaviour.isAlignedWithPlayer() && currentTarget == null)
+            if (Vector2.Distance(transform.position, target) < stopAttackThreshold)
             {
-                currentTarget = new Vector2(playerBehaviour.transform.position.x, playerBehaviour.transform.position.y);
+                collider2d.enabled = false;
+                isAimed = false;
+                enemyBehaviour.StartMoving();
             }
 
-            if(currentTarget == null)
+            if(Vector2.Distance(transform.position, playerBehaviour.transform.position) < distanceToAttack)
             {
-                enemyBehaviour.state = EnemyBehaviour.EnemyState.MOVING;
+                playerBehaviour.ApplyDamage();
+                collider2d.enabled = false;
+                isAimed = false;
+                enemyBehaviour.StartMoving();
             }
 
-            if (currentTarget != null)
-            {
-                transform.position = Vector2.Lerp(transform.position, (Vector2)currentTarget, attackSpeed * Time.deltaTime);
-
-                if (Mathf.Abs(transform.position.x - (float)currentTarget?.x) < stopAttackThreshold)
-                {
-                    currentTarget = null;
-                    enemyBehaviour.state = EnemyBehaviour.EnemyState.MOVING;
-                    currentTimeToAttack = 0;
-                }
-            }
         }
+        else
+        {
+            target = playerBehaviour.transform.position;
+            collider2d.enabled = true;
+            isAimed = true;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(target, Vector3.one);
     }
 }

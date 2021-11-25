@@ -27,6 +27,18 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Fireble")
+        {
+            health.TakeDamage(25f);
+        }        
+    }
+
+    public void ApplyDamage()
+    {
+        health.TakeDamage(10f);
+    }
     private void Fire()
     {
        

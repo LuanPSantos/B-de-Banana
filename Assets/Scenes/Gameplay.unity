@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 1460015869}
   - component: {fileID: 1460015868}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Fireble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460015861}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -685,12 +685,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealh: {fileID: 2002865266}
-  timeToAttack: 2
-  attackDistance: 5
-  damage: 30
   aligningThreshold: 0.99
-  thresholdToPlayer: 1
-  state: 0
+  distanceToAction: 5
+  timeBetweenAttacks: 1.5
 --- !u!114 &1460015868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8712b51ebed943f4d9d1df71a8228a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 1
   playerBehaviour: {fileID: 2002865267}
 --- !u!114 &1460015869
 MonoBehaviour:
@@ -717,10 +714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc36fdc44cfd4c429937cbe14a7a1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 12
-  timeToAttack: 2
-  attackThreshold: 0.99
-  stopAttackThreshold: 1
+  attackSpeed: 5
+  stopAttackThreshold: 0.5
   playerBehaviour: {fileID: 2002865267}
 --- !u!1 &1682956586
 GameObject:
@@ -785,7 +780,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5162434, y: -0.13124186}
@@ -821,7 +816,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &2002865262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -881,7 +876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002865259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.84, y: -1.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1682956587}
@@ -900,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2060df61cf4eb594aa289697890bd437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!114 &2002865265
 MonoBehaviour:
   m_ObjectHideFlags: 0
