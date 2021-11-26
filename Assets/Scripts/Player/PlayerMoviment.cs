@@ -33,7 +33,7 @@ public class PlayerMoviment : MonoBehaviour
 
         if(inputDirection.x != 0)
         {
-            this.transform.localScale = new Vector3(-inputDirection.x * 0.5f, 0.5f, 1);
+            this.transform.localScale = new Vector3(inputDirection.x, 1, 1);
         }
     }
 

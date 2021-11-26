@@ -37,11 +37,11 @@ public class EnemyMovementBehaviour : MonoBehaviour
     {
         if (direction.x > 0)
         {
-            this.transform.localScale = new Vector3(-1 * 0.5f, 0.5f, 1);
+            this.transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            this.transform.localScale = new Vector3(1 * 0.5f, 0.5f, 1);
+            this.transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 

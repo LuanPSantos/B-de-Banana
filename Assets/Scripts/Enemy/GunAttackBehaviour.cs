@@ -27,9 +27,10 @@ public class GunAttackBehaviour : AttackBehaviour
         {
             transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, target.y, attackSpeed * Time.deltaTime), transform.position.z);
 
-            if (Vector2.Distance(transform.position, target) < stopAttackThreshold)
+            if (Mathf.Abs(transform.position.y - target.y) < stopAttackThreshold)
             {
                 isAimed = false;
+                gunBehaviour.Fire(transform.localScale.x);
                 enemyBehaviour.StartMoving();
             }
         }

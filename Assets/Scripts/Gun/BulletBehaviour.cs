@@ -10,13 +10,13 @@ public class BulletBehaviour : MonoBehaviour
 
     private void Start()
     {
-        this.transform.localScale = new Vector3(horizontalDirection, 1, 0);
+        this.transform.localScale = new Vector3(horizontalDirection * (-1), 1, 0);
         Destroy(this.gameObject, 5);
     }
 
     private void FixedUpdate()
     {
-        this.rb.MovePosition(transform.position + new Vector3(horizontalDirection * (-1), 0, 0) * Time.deltaTime * speed);
+        this.rb.MovePosition(transform.position + new Vector3(horizontalDirection, 0, 0) * Time.deltaTime * speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

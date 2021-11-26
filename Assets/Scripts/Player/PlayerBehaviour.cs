@@ -37,7 +37,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Fire()
     {
        
-         gun.Fire(this.transform.localScale.x);
+         gun.Fire(transform.localScale.x);
         
     }
 
