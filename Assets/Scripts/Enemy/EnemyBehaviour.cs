@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
 
-    public HealthBehaviour playerHealh;
+    public PlayerBehaviour playerBehaviour;
     public float aligningThreshold = 0.99f;
     public float distanceToAction = 5;
     public float timeBetweenAttacks = 2;
 
     private HealthBehaviour health;
-    private InlineAttackBehaviour attackBehaviour;
+    private AttackBehaviour attackBehaviour;
     private EnemyMovementBehaviour enemyMovementBehaviour;
     private float currentTimeBetweenAttacks = 3;
     private EnemyState state;
@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         this.health = GetComponent<HealthBehaviour>();
         this.enemyMovementBehaviour = GetComponent<EnemyMovementBehaviour>();
-        this.attackBehaviour = GetComponent<InlineAttackBehaviour>();
+        this.attackBehaviour = GetComponent<AttackBehaviour>();
 
         state = EnemyState.MOVING;
     }
@@ -43,7 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("MOVING");
             enemyMovementBehaviour.FollowPlayer();
 
-            if (Vector2.Distance(transform.position, playerHealh.transform.position) < distanceToAction)
+            if (Vector2.Distance(transform.position, playerBehaviour.transform.position) < distanceToAction)
             {
 
                 int random = Random.Range(0, 3);
@@ -118,8 +118,8 @@ public class EnemyBehaviour : MonoBehaviour
     public bool IsAlignedWithPlayer()
     {
         return
-            Vector2.Dot(((Vector2) playerHealh.transform.position - (Vector2)transform.position).normalized, Vector2.right) > aligningThreshold ||
-            Vector2.Dot(((Vector2) playerHealh.transform.position - (Vector2)transform.position).normalized, -Vector2.right) > aligningThreshold;
+            Vector2.Dot(((Vector2) playerBehaviour.transform.position - (Vector2)transform.position).normalized, Vector2.right) > aligningThreshold ||
+            Vector2.Dot(((Vector2) playerBehaviour.transform.position - (Vector2)transform.position).normalized, -Vector2.right) > aligningThreshold;
     }
 
     public enum EnemyState

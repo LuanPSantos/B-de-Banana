@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-
+    public Text healthText;
     public HealthBehaviour health;
 
     private GunBehaviour gun;
@@ -21,23 +22,17 @@ public class PlayerBehaviour : MonoBehaviour
             Die();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             Fire();
         }
+
+        healthText.text = health.GetCurrentHealth().ToString();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void ApplyDamage(float damage)
     {
-        if(collision.gameObject.tag == "Fireble")
-        {
-            health.TakeDamage(25f);
-        }        
-    }
-
-    public void ApplyDamage()
-    {
-        health.TakeDamage(10f);
+        health.TakeDamage(damage);
     }
     private void Fire()
     {

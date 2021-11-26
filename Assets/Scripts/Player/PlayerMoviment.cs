@@ -31,18 +31,9 @@ public class PlayerMoviment : MonoBehaviour
     {
         rb.MovePosition(transform.position + inputDirection * Time.deltaTime * speed);
 
-        LookToDirection(inputDirection);
-    }
-
-    private void LookToDirection(Vector2 direction)
-    {
-        if (direction.x > 0)
+        if(inputDirection.x != 0)
         {
-            this.transform.localScale = new Vector3(-1 * 0.5f, 0.5f, 1);
-        }
-        else
-        {
-            this.transform.localScale = new Vector3(1 * 0.5f, 0.5f, 1);
+            this.transform.localScale = new Vector3(-inputDirection.x * 0.5f, 0.5f, 1);
         }
     }
 

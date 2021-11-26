@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InlineAttackBehaviour : AttackBehaviour
+public class GunAttackBehaviour : AttackBehaviour
 {
+    public PlayerBehaviour playerBehaviour;
+
     public float attackSpeed = 15;
     public float stopAttackThreshold = 1;
     public float distanceToAttack = 1;
-    public float damage = 15;
-    public PlayerBehaviour playerBehaviour;
 
+    private GunBehaviour gunBehaviour;
     private EnemyBehaviour enemyBehaviour;
     private bool isAimed = false;
     private Vector3 target;
 
     void Start()
     {
+        gunBehaviour = GetComponent<GunBehaviour>();
         enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
 
@@ -23,21 +25,13 @@ public class InlineAttackBehaviour : AttackBehaviour
     {
         if (isAimed)
         {
-            transform.position = Vector2.Lerp(transform.position, target, attackSpeed * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, target.y, attackSpeed * Time.deltaTime), transform.position.z);
 
             if (Vector2.Distance(transform.position, target) < stopAttackThreshold)
             {
                 isAimed = false;
                 enemyBehaviour.StartMoving();
             }
-
-            if(Vector2.Distance(transform.position, playerBehaviour.transform.position) < distanceToAttack)
-            {
-                playerBehaviour.ApplyDamage(damage);
-                isAimed = false;
-                enemyBehaviour.StartMoving();
-            }
-
         }
         else
         {
