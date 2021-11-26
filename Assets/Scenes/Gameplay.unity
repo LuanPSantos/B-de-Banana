@@ -1840,9 +1840,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1963701630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8acbb5c53aa2a4d922fc7e1d2d95ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a4e35250d8d3054480cf9778124a2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBehaviour: {fileID: 2002865267}
+  attackSpeed: 15
+  stopAttackThreshold: 1
+  distanceToAttack: 1
 --- !u!1 &2002865259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2188,7 @@ SpriteRenderer:
   m_Size: {x: 0.08, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2123491824
