@@ -24,6 +24,12 @@ public class HealthBehaviour : MonoBehaviour
         {
             TakeDamage(10);
         }
+
+        if (collision.gameObject.tag == "Potion")
+        {
+            Heal(20);
+        }
+
     }
 
     public bool isDead()

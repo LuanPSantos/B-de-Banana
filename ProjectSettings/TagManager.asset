@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fireble
   - Bullet
+  - Potion
   layers:
   - Default
   - TransparentFX
