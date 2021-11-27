@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2002865259}
+  mapRenderer: {fileID: 1258835049}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
