@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public Text healthText;
+    
     public HealthBehaviour health;
 
     private GunBehaviour gun;
@@ -26,8 +26,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Fire();
         }
-
-        healthText.text = health.GetCurrentHealth().ToString();
     }
 
     public void ApplyDamage(float damage)
