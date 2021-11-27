@@ -6,6 +6,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
 
     public PlayerBehaviour playerBehaviour;
+    public GameManager gameManager;
     public float aligningThreshold = 0.99f;
     public float distanceToAction = 5;
     public float timeBetweenAttacks = 2;
@@ -29,6 +30,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (health.isDead())
         {
+            gameManager.IncreaseScore();
             Destroy(this.gameObject);
         }
 

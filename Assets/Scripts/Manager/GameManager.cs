@@ -10,13 +10,21 @@ public class GameManager : MonoBehaviour
     public HealthBehaviour playerHealth;
     public Text readyText;
     public Text healthText;
+    public Text scoreText;
+    public Text maxScoreText;
 
     private bool isPlaying;
+    private int score;
+    private int maxScore;
     void Start()
     {
         isPlaying = false;
         spawnManager.enabled = false;
         readyText.enabled = true;
+        maxScoreText.enabled = true;
+        scoreText.enabled = false;
+        maxScore = PlayerPrefs.GetInt("Score");
+        maxScoreText.text = maxScore.ToString();
         SetPlayerEnable(false);
 
     }
@@ -29,24 +37,43 @@ public class GameManager : MonoBehaviour
             {
                 isPlaying = false;
                 readyText.enabled = true;
+                maxScoreText.enabled = true;
+                scoreText.enabled = false;
                 spawnManager.enabled = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 SetPlayerEnable(false);
+
+                if(maxScore < score)
+                {
+                    PlayerPrefs.SetInt("Score", score);
+                    maxScore = score;
+                    maxScoreText.text = maxScore.ToString();
+                }
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
             healthText.text = playerHealth.GetCurrentHealth().ToString();
+            scoreText.text = "Pontuação " + score + "/" + maxScore + " Recorde";
         }
         else
         {
             
             if (Input.GetKeyDown(KeyCode.R))
             {
+                score = 0;
                 readyText.enabled = false;
+                maxScoreText.enabled = false;
+                scoreText.enabled = true;
                 isPlaying = true;
                 spawnManager.enabled = true;
                 SetPlayerEnable(true);
             }
         }
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
     }
 
     private void SetPlayerEnable(bool enabled)

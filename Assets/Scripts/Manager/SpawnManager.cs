@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public float spawnRate;
     public GameObject[] enemies;
     public PlayerBehaviour playerBehaviour;
+    public GameManager gameManager;
 
     private Renderer render;
 
@@ -17,6 +18,7 @@ public class SpawnManager : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             enemy.GetComponent<EnemyBehaviour>().playerBehaviour = playerBehaviour;
+            enemy.GetComponent<EnemyBehaviour>().gameManager = gameManager;
             enemy.GetComponent<EnemyMovementBehaviour>().playerBehaviour = playerBehaviour;
             enemy.GetComponent<AttackBehaviour>().SetPlayerBehaviour(playerBehaviour);
         }
