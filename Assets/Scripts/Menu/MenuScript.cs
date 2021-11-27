@@ -34,6 +34,12 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    public void ComoJogar()
+    {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
+        SceneManager.LoadScene("Instructions");
+    }
+
     public void VoltarAoMenu()
     {
         AudioSource.PlayClipAtPoint(clickMenu, transform.position);
