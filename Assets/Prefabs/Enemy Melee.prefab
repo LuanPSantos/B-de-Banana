@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 5
   stopAttackThreshold: 0.3
-  distanceToAttack: 0.3
-  damage: 15
+  distanceToAttack: 0.5
+  damage: 20
   playerBehaviour: {fileID: 0}
 --- !u!114 &7034437878139044044
 MonoBehaviour:

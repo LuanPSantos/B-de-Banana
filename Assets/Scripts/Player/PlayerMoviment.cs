@@ -29,7 +29,8 @@ public class PlayerMoviment : MonoBehaviour
 
     private void Move() 
     {
-        rb.MovePosition(transform.position + inputDirection * Time.deltaTime * speed);
+        //rb.MovePosition(transform.position + inputDirection * Time.deltaTime * speed);
+        transform.Translate(inputDirection * Time.deltaTime * speed);
 
         if(inputDirection.x != 0)
         {

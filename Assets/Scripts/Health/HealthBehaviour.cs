@@ -20,11 +20,6 @@ public class HealthBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            TakeDamage(10);
-        }
-
         if (collision.gameObject.tag == "Potion")
         {
             Heal(20);

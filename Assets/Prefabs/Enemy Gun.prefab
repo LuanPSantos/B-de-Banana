@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a6ad04c0cb30f45b2995ed3130cc13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
   bullet: {fileID: 8439785124402208939, guid: a7521684fde223140a40eed87aa2d9d7, type: 3}
   barrel: {fileID: 1010561388443561293}
 --- !u!1 &1010561389851316368

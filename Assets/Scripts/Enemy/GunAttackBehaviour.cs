@@ -40,4 +40,9 @@ public class GunAttackBehaviour : AttackBehaviour
             isAimed = true;
         }
     }
+
+    public override void SetPlayerBehaviour(PlayerBehaviour playerBehaviour)
+    {
+        this.playerBehaviour = playerBehaviour;
+    }
 }

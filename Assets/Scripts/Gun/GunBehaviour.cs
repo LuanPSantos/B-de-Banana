@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunBehaviour : MonoBehaviour
 {
 
+    public float damage;
     public BulletBehaviour bullet;
     public Transform barrel;
 
@@ -12,6 +13,7 @@ public class GunBehaviour : MonoBehaviour
     {
         if(direction != 0)
         {
+            bullet.damage = damage;
             bullet.horizontalDirection = direction;
         }
         

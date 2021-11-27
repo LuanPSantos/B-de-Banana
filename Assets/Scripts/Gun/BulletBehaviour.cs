@@ -7,6 +7,7 @@ public class BulletBehaviour : MonoBehaviour
     public float horizontalDirection = 1;
     public float speed = 15;
     public Rigidbody2D rb;
+    public float damage;
 
     private void Start()
     {
@@ -21,8 +22,10 @@ public class BulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Fireble")
+        HealthBehaviour health = collision.gameObject.GetComponent<HealthBehaviour>();
+        if (health != null)
         {
+            health.TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }
