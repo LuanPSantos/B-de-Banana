@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public PlayerBehaviour playerBehaviour;
     public GameManager gameManager;
+    public GameObject potion;
     public float aligningThreshold = 0.99f;
     public float distanceToAction = 5;
     public float timeBetweenAttacks = 2;
@@ -31,6 +32,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (health.isDead())
         {
             gameManager.IncreaseScore();
+
+            if(Random.Range(0, 100) == 0)
+            {
+                Instantiate(potion, transform.position, Quaternion.identity);
+            }
             Destroy(this.gameObject);
         }
 

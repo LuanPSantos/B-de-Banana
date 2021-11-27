@@ -7,7 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     
     public HealthBehaviour health;
-
+ 
     private GunBehaviour gun;
 
     void Start()
@@ -28,9 +28,19 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Potion")
+        {
+            health.Heal(30);
+            Destroy(collision.gameObject);
+        }
+    }
+
     public void ApplyDamage(float damage)
     {
         health.TakeDamage(damage);
+        
     }
     private void Fire()
     {

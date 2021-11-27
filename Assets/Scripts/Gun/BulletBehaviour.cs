@@ -20,13 +20,13 @@ public class BulletBehaviour : MonoBehaviour
         this.rb.MovePosition(transform.position + new Vector3(horizontalDirection, 0, 0) * Time.deltaTime * speed);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         HealthBehaviour health = collision.gameObject.GetComponent<HealthBehaviour>();
         if (health != null)
         {
             health.TakeDamage(damage);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1);
         }
     }
 
