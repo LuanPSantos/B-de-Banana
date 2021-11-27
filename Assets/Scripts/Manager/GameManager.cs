@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
             {
                 isPlaying = false;
                 readyText.enabled = true;
+                spawnManager.enabled = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 SetPlayerEnable(false);
             }
