@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
-            healthText.text = playerHealth.GetCurrentHealth().ToString();
+            healthText.text = "Vida: " + playerHealth.GetCurrentHealth().ToString();
             scoreText.text = "Pontuação " + score + "/" + maxScore + " Recorde";
         }
         else
@@ -71,9 +71,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncreaseScore()
+    public void IncreaseScore(int score)
     {
-        score++;
+        this.score += score;
     }
 
     private void SetPlayerEnable(bool enabled)

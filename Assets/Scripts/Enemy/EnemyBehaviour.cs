@@ -9,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public GameManager gameManager;
     public GameObject potion;
     public int potionPercent = 1;
+    public int scoreGiven;
     public float aligningThreshold = 0.99f;
     public float distanceToAction = 5;
     public float timeBetweenAttacks = 2;
@@ -32,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (health.isDead())
         {
-            gameManager.IncreaseScore();
+            gameManager.IncreaseScore(scoreGiven);
 
             if(Random.Range(0, 100) < potionPercent)
             {
@@ -49,7 +50,6 @@ public class EnemyBehaviour : MonoBehaviour
         switch (state)
         {
             case EnemyState.MOVING:
-            Debug.Log("MOVING");
             enemyMovementBehaviour.FollowPlayer();
 
             if (Vector2.Distance(transform.position, playerBehaviour.transform.position) < distanceToAction)
@@ -76,17 +76,14 @@ public class EnemyBehaviour : MonoBehaviour
 
             break;
         case EnemyState.ATTACKING:
-            Debug.Log("ATTACKING");
             attackBehaviour.AttackPlayer();
 
             break;
         case EnemyState.DODGING:
-            Debug.Log("DODGING");
             enemyMovementBehaviour.Dodge();
 
             break;
         case EnemyState.DESHING:
-            Debug.Log("DESHING");
 
             enemyMovementBehaviour.Desh();
 

@@ -7,29 +7,16 @@ public class PlayerMoviment : MonoBehaviour
 
     public float speed;
 
-    private Rigidbody2D rb;
     private Vector3 inputDirection;
-
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        
-    }
 
     void Update()
     {
         GetInputDirection();
-    }
-
-    void FixedUpdate()
-    {
         Move();
     }
 
     private void Move() 
     {
-        //rb.MovePosition(transform.position + inputDirection * Time.deltaTime * speed);
         transform.Translate(inputDirection * Time.deltaTime * speed);
 
         if(inputDirection.x != 0)

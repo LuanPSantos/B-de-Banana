@@ -21,7 +21,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     public void FollowPlayer()
     {
         Vector3 direction = (playerBehaviour.transform.position - transform.position).normalized;
-        //rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
         transform.Translate(direction * Time.deltaTime * speed);
 
         LookToDirection(direction);
@@ -31,7 +30,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
     {
         Vector3 direction = Vector2.Perpendicular((playerBehaviour.transform.position - transform.position).normalized);
 
-        //rb.MovePosition(transform.position + direction * speed * 1.5f * Time.deltaTime);
         transform.Translate(direction * Time.deltaTime * speed * 1.5f);
     }
 
@@ -59,7 +57,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
         }
 
         transform.Translate((Vector3)deshDirection * Time.deltaTime * speed * 1.5f);
-        //rb.MovePosition(transform.position + (Vector3)deshDirection * speed * 1.5f * Time.deltaTime);
     }
 
     public void ResetDesh()

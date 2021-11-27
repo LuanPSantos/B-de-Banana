@@ -53,7 +53,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("PLAYER MORREU");
         this.gameObject.SetActive(false);
     }
 }
