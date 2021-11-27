@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    public AudioClip clickMenu;
     // Update is called once per frame
     void Update()
     {
@@ -13,30 +14,35 @@ public class MenuScript : MonoBehaviour
         {        
             Application.Quit();
         }
-       
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
     }
 
     public void ClicarJogar()
     {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
         SceneManager.LoadScene("Gameplay");
     }
 
     public void ClicarIntroducao()
     {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
         SceneManager.LoadScene("Introduction");
-          }
+    }
 
     public void ClicarCreditos()
     {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
         SceneManager.LoadScene("Credits");
+    }
+
+    public void VoltarAoMenu()
+    {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ClicarSair()
     {
+        AudioSource.PlayClipAtPoint(clickMenu, transform.position);
         Application.Quit();
     }
 

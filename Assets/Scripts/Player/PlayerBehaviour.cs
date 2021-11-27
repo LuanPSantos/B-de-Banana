@@ -7,7 +7,8 @@ public class PlayerBehaviour : MonoBehaviour
 {
     
     public HealthBehaviour health;
- 
+    public AudioClip potionCollect;
+
     private GunBehaviour gun;
 
     void Start()
@@ -32,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(collision.gameObject.tag == "Potion")
         {
+            AudioSource.PlayClipAtPoint(potionCollect, transform.position);
             health.Heal(30);
             Destroy(collision.gameObject);
         }
