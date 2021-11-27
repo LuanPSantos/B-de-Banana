@@ -329,6 +329,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 7034437878139044037, guid: 70bdb990cd34f3949be14c3191aeff20, type: 3}
   - {fileID: 1010561388996652726, guid: b4b964ded46fee6489e80eddbc15bf5b, type: 3}
+  - {fileID: 1010561388996652726, guid: c1f82dfa396832549addd416635dfa4a, type: 3}
   playerBehaviour: {fileID: 2002865267}
   gameManager: {fileID: 1864509335}
 --- !u!212 &100943223
@@ -5881,7 +5882,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2c765d78bb01e1044a5006b3be354b84, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.231
   m_Pitch: 1
   Loop: 1
   Mute: 0

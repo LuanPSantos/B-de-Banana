@@ -4950,6 +4950,7 @@ MonoBehaviour:
   playerBehaviour: {fileID: 0}
   gameManager: {fileID: 0}
   potion: {fileID: 8522620013023176038, guid: db58a3866d6064f409150b68cd9b38f0, type: 3}
+  potionPercent: 5
   aligningThreshold: 0.99
   distanceToAction: 5
   timeBetweenAttacks: 1.5

@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     public PlayerBehaviour playerBehaviour;
     public GameManager gameManager;
     public GameObject potion;
+    public int potionPercent = 1;
     public float aligningThreshold = 0.99f;
     public float distanceToAction = 5;
     public float timeBetweenAttacks = 2;
@@ -33,7 +34,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             gameManager.IncreaseScore();
 
-            if(Random.Range(0, 100) == 0)
+            if(Random.Range(0, 100) < potionPercent)
             {
                 Instantiate(potion, transform.position, Quaternion.identity);
             }
